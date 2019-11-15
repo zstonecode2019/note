@@ -1,0 +1,19 @@
+easyui中使用datagrid创建的表格实现自动滚动效果：
+function autoScroll(datagridId) {
+	function change() {
+		var body = $("#" + datagridId).parent().find(".datagrid-view2").find(".datagrid-body").find("tbody");
+		body.append(body.children().first());
+	}
+	$(document).ready(function () {
+		$("#" + datagridId).parent().find(".datagrid-view2").mouseenter(function () {
+			clearInterval(MyMar1)
+		});
+		$("#" + datagridId).parent().find(".datagrid-view2").mouseleave(function () {
+			MyMar1 = setInterval(change, 1000);
+		});
+	});
+
+	var MyMar1 = setInterval(change, 1000);
+}
+
+autoScroll("heapUseInfoTable")
